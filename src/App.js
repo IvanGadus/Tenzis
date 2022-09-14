@@ -16,7 +16,7 @@ export default function App() {
       const oneDie ={
         value:randomNumber,
         isHeld:false,
-        key:uuid()
+        id:uuid()
       }
       randomNumberArr.push(oneDie)
     }
@@ -27,15 +27,21 @@ export default function App() {
     setDice((prevDice) =>{
       return(
         prevDice.map((die) =>{
-          if(die.key == id){
             return(
-              {...die, isHeld:!die.isHeld} 
+              die.id === id ? {...die, isHeld:!die.isHeld} : die
             )
-          }else{
-            return(
-              die
-            )
-          }
+            
+
+          
+          // if(die.key == id){
+          //   return(
+          //     {...die, isHeld:!die.isHeld} 
+          //   )
+          // }else{
+          //   return(
+          //     die
+          //   )
+          // }
         })
       )
     })
@@ -51,8 +57,8 @@ export default function App() {
     return(
       <Die 
       value={die.value} 
-      key={die.key}
-      id={die.key}
+      key={die.id}
+      id={die.id}
       isHeld={die.isHeld}
       holdDice={holdDice}
       />
