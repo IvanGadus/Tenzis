@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Die() {
+export default function Die(props) {
   return (
-    <div>Die</div>
+    <button className='dieBtn'>{props.value}</button>
   )
 }
