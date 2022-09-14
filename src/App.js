@@ -12,10 +12,16 @@ export default function App() {
     const randomNumberArr = []
     for(let i = 0; i < 10; i++){
       const randomNumber = Math.floor(Math.random()*6)+1
-      randomNumberArr.push(randomNumber)
+      const oneDie ={
+        value:randomNumber,
+        isHold:false,
+        key:uuid()
+      }
+      randomNumberArr.push(oneDie)
     }
     return randomNumberArr
   }
+  
 
   function rollDice(){
     setDice(allNewNumbers())
@@ -25,9 +31,9 @@ export default function App() {
   const generateDice = dice.map((die) => {
     return(
       <Die 
-      value={die} 
-      key={uuid()}
-      isHold={false}
+      value={die.value} 
+      key={die.key}
+      isHold={die.isHold}
       />
     )
   })
