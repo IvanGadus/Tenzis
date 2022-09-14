@@ -5,8 +5,9 @@ import Die from './components/Die';
 function App() {
   return (
     <div className="App">
+        <main>
 
-        <Die></Die>
+        </main>
     </div>
   );
 }
