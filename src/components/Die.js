@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Die(props) {
   return (
-    <button className='dieBtn'>{props.value}</button>
+    <button onClick={()=>props.holdDice(props.id)} className='dieBtn'>{props.value}</button>
   )
 }

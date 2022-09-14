@@ -7,6 +7,7 @@ import uuid from 'react-uuid';
 export default function App() {
 
   const [dice, setDice] = useState(allNewNumbers())  
+  console.log(dice)
 
   function allNewNumbers(){
     const randomNumberArr = []
@@ -14,12 +15,30 @@ export default function App() {
       const randomNumber = Math.floor(Math.random()*6)+1
       const oneDie ={
         value:randomNumber,
-        isHold:false,
+        isHeld:false,
         key:uuid()
       }
       randomNumberArr.push(oneDie)
     }
     return randomNumberArr
+  }
+
+  function holdDice(id){
+    setDice((prevDice) =>{
+      return(
+        prevDice.map((die) =>{
+          if(die.key == id){
+            return(
+              {...die, isHeld:!die.isHeld} 
+            )
+          }else{
+            return(
+              die
+            )
+          }
+        })
+      )
+    })
   }
   
 
@@ -33,7 +52,9 @@ export default function App() {
       <Die 
       value={die.value} 
       key={die.key}
-      isHold={die.isHold}
+      id={die.key}
+      isHeld={die.isHeld}
+      holdDice={holdDice}
       />
     )
   })
