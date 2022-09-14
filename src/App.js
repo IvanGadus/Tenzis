@@ -30,18 +30,6 @@ export default function App() {
             return(
               die.id === id ? {...die, isHeld:!die.isHeld} : die
             )
-            
-
-          
-          // if(die.key == id){
-          //   return(
-          //     {...die, isHeld:!die.isHeld} 
-          //   )
-          // }else{
-          //   return(
-          //     die
-          //   )
-          // }
         })
       )
     })
@@ -49,7 +37,15 @@ export default function App() {
   
 
   function rollDice(){
-    setDice(allNewNumbers())
+    setDice((prevDice)=>{
+      return(
+        prevDice.map((die)=>{
+          return(
+            die.isHeld ? die : {...die, value:Math.floor(Math.random()*6)+1}
+          )
+        })
+      )
+    })
   }
 
 
