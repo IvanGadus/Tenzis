@@ -3,12 +3,22 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 
 
-
 export default function App() {
 
   const [dice, setDice] = useState(allNewNumbers())  
-  console.log(dice)
+  const [tenzis, setTenzis] = useState(false)
+  const [attempts, setAttempts] = useState(0)
+  console.log(tenzis)
 
+  useEffect(()=>{
+    const value = dice[0].value
+    setAttempts(prevAtempt => prevAtempt+1)
+    if(dice.every((die)=>die.value===value && die.isHeld===true)){
+      setTenzis(true)
+    } 
+  },[dice])
+
+  
   function allNewNumbers(){
     const randomNumberArr = []
     for(let i = 0; i < 10; i++){
@@ -69,6 +79,7 @@ export default function App() {
             {generateDice}
           </div>
           <button onClick={rollDice} className='rollBtn'>Hoď kockami</button>
+          <p>Tvoje pokusy: <strong>{attempts}</strong></p>
         </main>
     </div>
   );
