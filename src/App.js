@@ -1,6 +1,7 @@
 import Die from './components/Die';
 import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
+import Confetti from 'react-confetti'
 
 
 export default function App() {
@@ -80,14 +81,16 @@ export default function App() {
 
 
   return (
-    <div className="App">
-        <main>
-          <div className="diceContainer">
-            {generateDice}
-          </div>
-          <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>
-          <p>Tvoje pokusy: <strong>{attempts}</strong></p>
-        </main>
+    <div className="App">  
+    {tenzis && <Confetti />}
+      <main>
+        
+        <div className="diceContainer">
+          {generateDice}
+        </div>
+        <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>
+        <p>Tvoje pokusy: <strong>{attempts}</strong></p>
+      </main>
     </div>
   );
 }
