@@ -9,7 +9,8 @@ export default function App() {
   const [dice, setDice] = useState(allNewNumbers())  
   const [tenzis, setTenzis] = useState(false)
   const [attempts, setAttempts] = useState(0)
-  const [playTime, setPlayTime] = useState(0)
+  const [playTime, setPlayTime] = useState({ms:0, s:0,m:0})
+  const [myInterval, setMyInterval] = useState(0) 
 
   useEffect(()=>{
     const value = dice[0].value
@@ -44,9 +45,11 @@ export default function App() {
       )
     })
   }
+
   
 
   function rollDice(){
+     
     if(!tenzis){
       setAttempts(prevAtempt => prevAtempt+1)
       setDice((prevDice)=>{
@@ -70,6 +73,8 @@ export default function App() {
   const generateDice = dice.map((die) => {
     return(
       <Die 
+      tenzis={tenzis}
+      myInterval={myInterval}
       value={die.value} 
       key={die.id}
       id={die.id}
@@ -79,20 +84,44 @@ export default function App() {
     )
   })
 
+  let updateMS = playTime.ms, updateS = playTime.s, updateM = playTime.m
+
+  function run() {
+    if(updateS === 60){
+      updateM ++
+      updateS = 0
+    }
+    if(updateMS === 100){
+      updateS ++
+      updateMS = 0
+    }
+    updateMS = updateMS + 10
+    return setPlayTime({ms:updateMS, s:updateS, m:updateM})
+  }
+
+  if(tenzis){
+    stopStopWatch()
+  }
+
+  function startStopWatch(){
+    setMyInterval(setInterval(run,100)) 
+  }
+  function stopStopWatch(){
+    clearInterval(myInterval)
+  }
 
   return (
     <div className="App">  
     {tenzis && <Confetti />}
-      <main>
-        
+      <main>       
         <div className="diceContainer">
           {generateDice}
         </div>
-        <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>
+        {myInterval === 0 ? <button className='rollBtn' onClick={startStopWatch}>Start</button> : <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>}
         <p>Tvoje pokusy: <strong>{attempts}</strong></p>
+        <p>{playTime.s < 10 && "0"}{playTime.s} : {playTime.ms < 10 && "0"}{playTime.ms === 100 ? "00" : playTime.ms}</p>
       </main>
     </div>
   );
 }
-
 
