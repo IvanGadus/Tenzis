@@ -127,6 +127,20 @@ export default function App() {
     pointerEvents:myInterval === 0 | tenzis ? "auto" : "none"
   }
 
+  // const mojObjekt = [{
+  //   meno:"Ifko",
+  //   vek:23,
+  //   biznismeeen:true
+  // },{
+  //   meno:"Luka",
+  //   vek:27,
+  //   biznismeeen:true
+  // }]
+  // localStorage.setItem("mojObjekt", JSON.stringify(mojObjekt))
+  // console.log(JSON.parse(localStorage.getItem("mojObjekt")))
+
+  // localStorage.setItem("hodnota", "ahoj")
+  // localStorage.clear()
 
   return (
     <div className="App">  
