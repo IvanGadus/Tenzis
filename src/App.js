@@ -11,6 +11,8 @@ export default function App() {
   const [attempts, setAttempts] = useState(0)
   const [playTime, setPlayTime] = useState({ms:0, s:0,m:0})
   const [myInterval, setMyInterval] = useState(0) 
+  const [gameIsShown, setGameIsShown] = useState(true)
+  const [scoreIsShown, setScoreIsshown] = useState(false)
 
   useEffect(()=>{
     const value = dice[0].value
@@ -65,6 +67,8 @@ export default function App() {
       setDice(allNewNumbers())
       setAttempts(0)
       setTenzis(false)
+      setMyInterval(0)
+      setPlayTime({ms:0, s:0,m:0})
     }
 
   }
@@ -110,17 +114,43 @@ export default function App() {
     clearInterval(myInterval)
   }
 
+  function handleClickScore(){
+    setGameIsShown(false)
+    setScoreIsshown(true)
+  }
+
+  function handleClickGame(){
+    setGameIsShown(true)
+    setScoreIsshown(false)
+  }
+  const stylePointerEvents = {
+    pointerEvents:myInterval === 0 | tenzis ? "auto" : "none"
+  }
+
+
   return (
     <div className="App">  
-    {tenzis && <Confetti />}
-      <main>       
-        <div className="diceContainer">
-          {generateDice}
-        </div>
-        {myInterval === 0 ? <button className='rollBtn' onClick={startStopWatch}>Start</button> : <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>}
-        <p>Tvoje pokusy: <strong>{attempts}</strong></p>
-        <p>{playTime.s < 10 && "0"}{playTime.s} : {playTime.ms < 10 && "0"}{playTime.ms === 100 ? "00" : playTime.ms}</p>
-      </main>
+
+      {tenzis && <Confetti />}
+      <div className='scoreBoard'>
+        <button style={stylePointerEvents} onClick={handleClickScore} className='scoreButton scoreBoardButton tooltip'>Skóre</button>
+        <button onClick={handleClickGame} className='gameButton scoreBoardButton'>Hra</button>
+      </div>   
+        {gameIsShown && (
+          <main> 
+            <div className="diceContainer">
+              {generateDice}
+            </div>
+            {myInterval === 0 ? <button className='rollBtn' onClick={startStopWatch}>Start</button> : <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>}
+            <p>Tvoje pokusy: <strong>{attempts}</strong></p>
+            <p>{playTime.s < 10 && "0"}{playTime.s} : {playTime.ms < 10 && "0"}{playTime.ms === 100 ? "00" : playTime.ms}</p>
+          </main>)}
+    
+        {scoreIsShown && (
+          <main>
+            ahoj tunak bude tvoje skore
+          </main>
+        )}
     </div>
   );
 }

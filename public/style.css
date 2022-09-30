@@ -56,3 +56,50 @@ main{
     color: #FFFFFF;
     margin-bottom: 20px;
 }
+
+.scoreBoard{
+    color: white;
+    margin: 20px;
+    width: 350px;
+    height: max-content;
+    display: flex;
+    justify-content: space-around;
+}
+
+.scoreBoardButton{
+    width: 70px;
+    height: 35px;
+    background-color: #5035FF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  /* .tooltip:hover .tooltiptext {
+    visibility: visible;
+  } */
