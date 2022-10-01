@@ -1,4 +1,5 @@
 import Die from './components/Die';
+import ScoreBoard from './components/ScoreBoard';
 import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import Confetti from 'react-confetti'
@@ -127,21 +128,6 @@ export default function App() {
     pointerEvents:myInterval === 0 | tenzis ? "auto" : "none"
   }
 
-  // const mojObjekt = [{
-  //   meno:"Ifko",
-  //   vek:23,
-  //   biznismeeen:true
-  // },{
-  //   meno:"Luka",
-  //   vek:27,
-  //   biznismeeen:true
-  // }]
-  // localStorage.setItem("mojObjekt", JSON.stringify(mojObjekt))
-  // console.log(JSON.parse(localStorage.getItem("mojObjekt")))
-
-  // localStorage.setItem("hodnota", "ahoj")
-  // localStorage.clear()
-
   return (
     <div className="App">  
 
@@ -161,9 +147,7 @@ export default function App() {
           </main>)}
     
         {scoreIsShown && (
-          <main>
-            ahoj tunak bude tvoje skore
-          </main>
+          <ScoreBoard />
         )}
     </div>
   );
