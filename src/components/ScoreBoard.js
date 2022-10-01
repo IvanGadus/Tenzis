@@ -1,49 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-export default function scoreBoard(){
+
+export default function ScoreBoard(){
+    const [tableData, setTableData] = useState([{}])
+
     const colNames = ["Čas", "Počet hodov"]
 
-    const resutlsTable = [{
-        time:{ms:20, s:15,m:0},
-        attempts:22
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    },{
-        time:{ms:80, s:55,m:0},
-        attempts:11
-    }
-]
-    localStorage.setItem("resutlsTable", JSON.stringify(resutlsTable))
-    
+    // localStorage.setItem("resutlsTable", JSON.stringify(resutlsTable))
 
-    // localStorage.setItem("hodnota", "ahoj")
-    // localStorage.clear()
     return(
         <main className="tableMain">
             <table className="table">
-                <thead>
+                <thead className='thead'>
                     <tr>
                         {colNames.map((name, index)=>(
                             <th className="colName" key={index}>
@@ -53,7 +21,7 @@ export default function scoreBoard(){
                     </tr>
                 </thead>
                 <tbody>
-                    {resutlsTable.map((item,index)=>{
+                    {/* {resutlsTable.map((item,index)=>{
                         console.log(item)
                         return(
                             <tr className="tableRow" key={index}>
@@ -61,7 +29,7 @@ export default function scoreBoard(){
                                 <th>{item.attempts}</th>
                             </tr>
                         )
-                    })}
+                    })} */}
                 </tbody>
             </table>
         </main>

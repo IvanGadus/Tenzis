@@ -14,6 +14,8 @@ export default function App() {
   const [myInterval, setMyInterval] = useState(0) 
   const [gameIsShown, setGameIsShown] = useState(true)
   const [scoreIsShown, setScoreIsshown] = useState(false)
+  const [tableData, setTableData] = useState(JSON.parse(localStorage.getItem("tableData")) || [])
+
 
   useEffect(()=>{
     const value = dice[0].value
@@ -22,7 +24,20 @@ export default function App() {
     } 
   },[dice])
 
+  useEffect(()=>{
+    if(tenzis){
+      const result = {attempts:attempts,playTime:playTime}
+      setTableData((prev)=>(
+        [...prev, result]
+      ))
+    }
+  },[tenzis])
+
+  useEffect(()=>{
+    localStorage.setItem("tableData",JSON.stringify(tableData))
+  },[tableData])
   
+  // localStorage.clear()
   function allNewNumbers(){
     const randomNumberArr = []
     for(let i = 0; i < 10; i++){
@@ -107,6 +122,9 @@ export default function App() {
   if(tenzis){
     stopStopWatch()
   }
+  // localStorage.clear()
+  // console.log(tableData)
+
 
   function startStopWatch(){
     setMyInterval(setInterval(run,100)) 
