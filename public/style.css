@@ -77,35 +77,9 @@ main{
     color: #FFFFFF;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-  }
-  
-  /* .tooltip:hover .tooltiptext {
-    visibility: visible;
-  } */
 
   /* Table style */
-  .colName{
+  th.colName{
     width: 50%;
     height: 25px;
     border: 1px solid black;
@@ -127,4 +101,7 @@ main{
   thead > tr > th{
     background-color: rgb(134, 129, 129);
     padding: 7px 6px;
+  }
+  .thead{
+    height: 25px;
   }
