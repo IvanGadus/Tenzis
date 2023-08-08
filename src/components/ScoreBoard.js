@@ -30,7 +30,7 @@ export default function ScoreBoard(){
                         console.log(item)
                         return(
                             <tr className="tableRow" key={index}>
-                                <th>{item.playTime.s + ":" + item.playTime.ms}</th>
+                                <th>{item.playTime.m > 0 ? (item.playTime.m + ":" + item.playTime.s + ":" + (item.playTime.ms === 100 ? "00" : item.playTime.ms)) : (item.playTime.s + ":" + (item.playTime.ms === 100 ? "00" : item.playTime.ms))}</th>
                                 <th>{item.attempts}</th>
                             </tr>
                         )

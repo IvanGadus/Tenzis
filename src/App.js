@@ -161,7 +161,7 @@ export default function App() {
             </div>
             {myInterval === 0 ? <button className='rollBtn' onClick={startStopWatch}>Start</button> : <button onClick={rollDice} className='rollBtn'>{!tenzis ? "Hoď kockami" : "Reštartovať hru"}</button>}
             <p>Tvoje pokusy: <strong>{attempts}</strong></p>
-            <p>{playTime.s < 10 && "0"}{playTime.s} : {playTime.ms < 10 && "0"}{playTime.ms === 100 ? "00" : playTime.ms}</p>
+            <p>{playTime.m > 0 ? playTime.m + ":" : ""}{playTime.s < 10 && "0"}{playTime.s} : {playTime.ms < 10 && "0"}{playTime.ms === 100 ? "00" : playTime.ms}</p>
           </main>)}
     
         {scoreIsShown && (
