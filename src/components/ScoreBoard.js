@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 
 export default function ScoreBoard(){
-    const [tableData, setTableData] = useState([{}])
+    const [tableData, setTableData] = useState("")
 
     const colNames = ["Čas", "Počet hodov"]
 
-    // localStorage.setItem("resutlsTable", JSON.stringify(resutlsTable))
+    useEffect(() => {
+        const dataFromLocalStorage = localStorage.getItem("tableData");
+        if (dataFromLocalStorage) {
+            setTableData(JSON.parse(dataFromLocalStorage)); // Uloženie do stavu
+        }
+    }, []);
 
     return(
         <main className="tableMain">
@@ -21,15 +26,15 @@ export default function ScoreBoard(){
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {resutlsTable.map((item,index)=>{
+                    {tableData.length >= 1 && tableData.map((item,index)=>{
                         console.log(item)
                         return(
                             <tr className="tableRow" key={index}>
-                                <th>{item.time.s + ":" + item.time.ms}</th>
+                                <th>{item.playTime.s + ":" + item.playTime.ms}</th>
                                 <th>{item.attempts}</th>
                             </tr>
                         )
-                    })} */}
+                    })}
                 </tbody>
             </table>
         </main>
